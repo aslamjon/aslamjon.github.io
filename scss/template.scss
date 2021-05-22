@@ -3,7 +3,7 @@
     margin: 0 15px;
     .col-md-6 {
         transition: 0.3s;
-        margin: 10px 0;
+        margin: 20px 0;
         position: relative;
         .img {
             width: 100%;
@@ -100,7 +100,7 @@
                 .navigation {
                     width: 100%;
                     padding: 5px 10px;
-                    background: rgb(253,252,250);
+                    background: rgb(75,79,79);
                     border-top-left-radius: 10px;
                     border-top-right-radius: 10px;
                     display: flex;
@@ -113,13 +113,12 @@
                     }
                     .another {
                         img{
-                            width: 80%;
-                            margin-left: 15px;
+                            width: 65px;
                         }
                     }
                 }
                 img {
-                    margin-top: -7px;
+                    margin-top: -2px;
                 }
                 .tel-img {
                     margin-top: 0px;
@@ -149,5 +148,69 @@
             
         }
         
+    }
+}
+
+@media (max-width: 800px) {
+    .template {
+        .col-md-6 {
+            .img{
+                .tel {
+                    .navigation {
+                        padding: 5px 7px;
+                        .clock{
+                            font-size: 12px;
+                        }
+                        .another{
+                            img {
+                                width: 50px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 630px) {
+    .template {
+        .col-md-6 {
+            .img{
+                .tel {
+                    .navigation {
+                        padding: 5px;
+                        .clock{
+                            font-size: 11px;
+                        }
+                        .another{
+                            img {
+                                width: 43px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 575px) {
+    .template {
+        .col-md-6 {
+            .img{
+                .tel {
+                    .navigation {
+                        padding: 5px 7px;
+                        .clock{
+                            font-size: 12px;
+                        }
+                        .another{
+                            img {
+                                width: 50px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

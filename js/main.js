@@ -1,20 +1,25 @@
 AOS.init();
 // Clock
-let clock = document.querySelector('.clock');
+let clock = document.querySelectorAll('.clock');
 
 let d = new Date()
-if (String(d.getMinutes()).length == 1) 
-    clock.innerHTML = `${d.getHours()}:${'0'+d.getMinutes()}`;
-else 
-    clock.innerHTML = `${d.getHours()}:${d.getMinutes()}`;
+clock.forEach((val, ind) => {
+    if (String(d.getMinutes()).length == 1) 
+        val.innerHTML = `${d.getHours()}:${'0'+d.getMinutes()}`;
+    else 
+        val.innerHTML = `${d.getHours()}:${d.getMinutes()}`;
+})
+
 
 
 setInterval(function() {
     let d = new Date();
-    if (String(d.getMinutes()).length == 1) 
-        clock.innerHTML = `${d.getHours()}:${'0'+d.getMinutes()}`;
-    else 
-        clock.innerHTML = `${d.getHours()}:${d.getMinutes()}`;
+    clock.forEach((val, ind) => {
+        if (String(d.getMinutes()).length == 1) 
+            val.innerHTML = `${d.getHours()}:${'0'+d.getMinutes()}`;
+        else 
+            val.innerHTML = `${d.getHours()}:${d.getMinutes()}`;
+    })
 },10000)
 // ==================================================
 
@@ -29,4 +34,9 @@ red.forEach((value, index) => {
             console.log('none');
         },500)
     }
+})
+// ======================================
+let another = document.querySelectorAll('.another');
+another.forEach((value, index) => {
+    value.innerHTML = '<img src="img/Capture2.JPG" alt="">';
 })
