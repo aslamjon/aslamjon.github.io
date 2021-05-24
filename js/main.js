@@ -68,23 +68,17 @@ function clickYellow() {
 clickYellow()
 
 // ===================- click green button -===================
-let leftOrRight = false;
 function clickGreen() {
     let green = document.querySelectorAll('.green');
     let closeTemp = document.querySelectorAll('.closeTemp');
     let img = document.querySelectorAll('.img');
     let tools = document.querySelector('.tools');
-    let dataImgs = [];
-    // let leftOrRight = false;
+    // let dataImgs = [];
     green.forEach((value, index) => {
         value.onmousemove = function(e) {
             value.onclick = function() {
-                // check right or left
-                if (index % 2 == 0) leftOrRight = true;
-                else leftOrRight = false;
-                if (window.innerWidth > 576) { // desktop
                     img[index].style.width = img[index].clientWidth + 'px';
-                    img[index].style.transition = '1s';
+                    img[index].style.transition = '0.5s cubic-bezier(.52,.53,.55,.56)';
 
                     if ((window.innerWidth / 2) < e.clientX) // click right template
                         img[index].style.transform = `translate(-${(window.innerWidth / 2) - (img[index].clientWidth / 2)}px, 30px)`;
@@ -106,7 +100,6 @@ function clickGreen() {
 
                         closeTemp[index].style.opacity = 0.3;
                         tools.style.transform = 'translateY(0px)';
-                        dataImgs.push(img[index].firstElementChild.children[1].getAttribute('src'))
                         tools.innerHTML += `
                             <div class="toolsItem"> 
                                 <img src="${img[index].firstElementChild.children[1].getAttribute('src')}" alt="">
@@ -117,59 +110,68 @@ function clickGreen() {
                         closeTemp[index].style.opacity = 0;
                         closeTemp[index].style.display = 'none';
                     }, 900);
-                }
-    
-                setTimeout(function() {
-                    tools.style.transform = 'translateY(50px)';
-                    // =========================- toolsItem click -===========================
-                    let toolsItem = document.querySelectorAll('.toolsItem');
-                    for(let valItem of toolsItem) {
-                        valItem.onclick = function() {
-                            let isRun = false;
-                            for (let i=0; closeTemp.length > i; i++) {
-                                if (valItem.firstElementChild.getAttribute('src') == closeTemp[i].firstElementChild.firstElementChild.children[1].getAttribute('src')) {
-                                    closeTemp[i].style.opacity = 1;
-                                    closeTemp[i].style.maxWidth = '50%';
-                                    closeTemp[i].style.display = 'block';
-                                    closeTemp[i].style.zIndex = 2;
-                                    img[i].style.width = 100 + '%';
-                                    setTimeout(function(){
-                                        img[index].style.transform = `translate(0px, 0px)`;
-                                    },500)
-    
-                                    setTimeout(function(){
-                                        img[i].style.zIndex = 1;
-                                    },800)
-                                    isRun = true;
-                                }
-                            }
-                            if (isRun) {
-                                setTimeout(function(){
-                                    valItem.style.opacity = 0;
-                                    valItem.style.display = 'none';
-                                }, 500)
-                            }
-                            
-                        }
-                    }
-                }, 1500);
-    
                 
+                    setTimeout(function() {
+                        if (window.innerWidth < 576)  // mobil < 576
+                            tools.style.transform = 'translateY(0px)';
+                        else
+                            tools.style.transform = 'translateY(50px)';
+                        // =========================- toolsItem click -===========================
+                        let toolsItem = document.querySelectorAll('.toolsItem');
+                        for(let valItem of toolsItem) {
+                            valItem.onclick = function() {
+                                let isRun = false;
+                                for (let i=0; closeTemp.length > i; i++) {
+                                    if (valItem.firstElementChild.getAttribute('src') == closeTemp[i].firstElementChild.firstElementChild.children[1].getAttribute('src')) {
+                                        closeTemp[i].style.opacity = 1;
+                                        if (window.innerWidth < 576)  // mobil < 576
+                                            closeTemp[i].style.maxWidth = '100%';
+                                        else
+                                            closeTemp[i].style.maxWidth = '50%';
+                                        closeTemp[i].style.display = 'block';
+                                        closeTemp[i].style.zIndex = 2;
+                                        img[i].style.width = 100 + '%';
+                                        
+                                        setTimeout(function(){
+                                            img[index].style.transform = `translate(0px, 0px)`;
+                                        },500)
+                                        
+                                        setTimeout(function(){
+                                            img[i].style.zIndex = 1;
+                                        },800)
+                                        isRun = true;
+                                    }
+                                }
+                                if (isRun) {
+                                    setTimeout(function(){
+                                        valItem.style.opacity = 0;
+                                        valItem.style.display = 'none';
+                                    }, 500)
+                                }
+                                for (let v of toolsItem) 
+                                    if(v.style.display == '' && window.innerWidth < 576)  // mobil < 576
+                                        tools.style.transform = 'translateY(0px)';
+                                    else
+                                        tools.style.transform = 'translateY(50px)';
+
+                            }
+                        }
+                    }, 1000); 
+                    
             }
+            
         }
-        
+        let rootTools = document.querySelector('.root-tools');
+        if (window.innerWidth > 576) { // desktop > 576
+            rootTools.onmouseover = function() {
+                tools.style.transform = 'translateY(0px)';
+            }
+            rootTools.onmouseout = function() {
+                tools.style.transform = 'translateY(50px)';
+            }
+        } 
     });
 
-    let rootTools = document.querySelector('.root-tools');
-    
-    rootTools.onmouseover = function() {
-        tools.style.transform = 'translateY(0px)';
-    }
-    rootTools.onmouseout = function() {
-        tools.style.transform = 'translateY(50px)';
-    }
-    
-    
 }
 clickGreen()
 

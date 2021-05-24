@@ -277,13 +277,14 @@
     
     .tools{
         min-width: 200px;
-        height: 40px;
+        min-height: 40px;
         background: rgba(51,51,51,0.5);
         border-radius: 10px 10px 0 0;
         transform: translateY(50px);
-        transition: 0.4s;
+        transition: 0.5s;
         padding: 5px;
         display: flex;
+        overflow-x: auto;
         .toolsItem {
             height: 35px;
             margin: 0 5px;
