@@ -77,85 +77,87 @@ function clickGreen() {
     let dataImgs = [];
     // let leftOrRight = false;
     green.forEach((value, index) => {
-        value.onclick = function() {
-            // check right or left
-            if (index % 2 == 0) leftOrRight = true;
-            else leftOrRight = false;
+        value.onmousemove = function(e) {
+            value.onclick = function() {
+                // check right or left
+                if (index % 2 == 0) leftOrRight = true;
+                else leftOrRight = false;
+                if (window.innerWidth > 576) { // desktop
+                    img[index].style.width = img[index].clientWidth + 'px';
+                    img[index].style.transition = '1s';
 
-            img[index].style.width = img[index].clientWidth + 'px';
-            img[index].style.transition = '1s';
-            img[index].style.position = 'absolute';
-            img[index].style.top = 50 + 'px';
-            img[index].style.left = 20 + 'vw';
-            img[index].style.right = 20 + 'vw';
-            // if (index % 2 == 0) img[index].style.left = 30 + 'vw';
-            // else if(!leftOrRight) img[index].style.right = 30 + 'vw';
-            img[index].style.zIndex = 5;
-            
-            setTimeout(function(){
-                img[index].style.top = window.innerHeight + 'px';
-                img[index].style.left = 35 + 'vw';
-                img[index].style.right = 35 + 'vw';
-                // if (index % 2 == 0) img[index].style.left = 40 + 'vw';
-                // else if(!leftOrRight) img[index].style.right = 40 + 'vw';
-                img[index].style.width = img[index].clientWidth / 4 + 'px';
-                closeTemp[index].style.maxWidth = 0;
+                    if ((window.innerWidth / 2) < e.clientX) // click right template
+                        img[index].style.transform = `translate(-${(window.innerWidth / 2) - (img[index].clientWidth / 2)}px, 30px)`;
 
-            },500);
+                    else // click left template
+                        img[index].style.transform = `translate(${(window.innerWidth / 2) - (img[index].clientWidth / 2)}px, 30px)`;
+                    img[index].style.zIndex = 5;
+                    
+                    setTimeout(function(){
+                        img[index].style.width = img[index].clientWidth / 4 + 'px';
+                        closeTemp[index].style.maxWidth = 0;
+                    },500);
+    
+                    setTimeout(function() {
+                        if ((window.innerWidth / 2) < e.clientX) // click right template
+                            img[index].style.transform = `translate(-${(window.innerWidth / 4)}px, ${window.innerHeight}px)`;
+                        else // click left template
+                            img[index].style.transform = `translate(${(window.innerWidth / 2) - (img[index].clientWidth / 2)}px, ${window.innerHeight}px)`;
 
-            setTimeout(function() {
-                closeTemp[index].style.opacity = 0.3;
-                tools.style.transform = 'translateY(0px)';
-                dataImgs.push(img[index].firstElementChild.children[1].getAttribute('src'))
-                tools.innerHTML += `
-                    <div class="toolsItem"> 
-                        <img src="${img[index].firstElementChild.children[1].getAttribute('src')}" alt="">
-                    </div>`;
-            }, 700);
-
-            setTimeout(function() {
-                closeTemp[index].style.opacity = 0;
-                closeTemp[index].style.display = 'none';
-            }, 900);
-
-            setTimeout(function() {
-                tools.style.transform = 'translateY(50px)';
-                // =========================- toolsItem click -===========================
-                let toolsItem = document.querySelectorAll('.toolsItem');
-                for(let valItem of toolsItem) {
-                    valItem.onclick = function() {
-                        let isRun = false;
-                        for (let i=0; closeTemp.length > i; i++) {
-                            if (valItem.firstElementChild.getAttribute('src') == closeTemp[i].firstElementChild.firstElementChild.children[1].getAttribute('src')) {
-                                closeTemp[i].style.opacity = 1;
-                                closeTemp[i].style.maxWidth = '50%';
-                                closeTemp[i].style.display = 'block';
-                                closeTemp[i].style.zIndex = 2;
-                                img[i].style.width = 100 + '%';
-                                setTimeout(function(){
-                                    img[index].style.top = 50 + 'px';
-                                    // img[index].style.left = 30 + 'vw';
-                                    if(index % 2 == 0) img[index].style.left = 30 + 'vw';
-                                    else img[index].style.right = 30 + 'vw';
-                                },500)
-
-                                setTimeout(function(){
-                                    img[i].style.zIndex = 1;
-                                    img[i].style.position = 'static';
-                                },800)
-                                isRun = true;
-                            }
-                        }
-                        if (isRun) {
-                            valItem.style.display = 'none';
-                        }
-                        
-                    }
+                        closeTemp[index].style.opacity = 0.3;
+                        tools.style.transform = 'translateY(0px)';
+                        dataImgs.push(img[index].firstElementChild.children[1].getAttribute('src'))
+                        tools.innerHTML += `
+                            <div class="toolsItem"> 
+                                <img src="${img[index].firstElementChild.children[1].getAttribute('src')}" alt="">
+                            </div>`;
+                    }, 700);
+    
+                    setTimeout(function() {
+                        closeTemp[index].style.opacity = 0;
+                        closeTemp[index].style.display = 'none';
+                    }, 900);
                 }
-            }, 1500);
-
-            
+    
+                setTimeout(function() {
+                    tools.style.transform = 'translateY(50px)';
+                    // =========================- toolsItem click -===========================
+                    let toolsItem = document.querySelectorAll('.toolsItem');
+                    for(let valItem of toolsItem) {
+                        valItem.onclick = function() {
+                            let isRun = false;
+                            for (let i=0; closeTemp.length > i; i++) {
+                                if (valItem.firstElementChild.getAttribute('src') == closeTemp[i].firstElementChild.firstElementChild.children[1].getAttribute('src')) {
+                                    closeTemp[i].style.opacity = 1;
+                                    closeTemp[i].style.maxWidth = '50%';
+                                    closeTemp[i].style.display = 'block';
+                                    closeTemp[i].style.zIndex = 2;
+                                    img[i].style.width = 100 + '%';
+                                    setTimeout(function(){
+                                        img[index].style.transform = `translate(0px, 0px)`;
+                                    },500)
+    
+                                    setTimeout(function(){
+                                        img[i].style.zIndex = 1;
+                                    },800)
+                                    isRun = true;
+                                }
+                            }
+                            if (isRun) {
+                                setTimeout(function(){
+                                    valItem.style.opacity = 0;
+                                    valItem.style.display = 'none';
+                                }, 500)
+                            }
+                            
+                        }
+                    }
+                }, 1500);
+    
+                
+            }
         }
+        
     });
 
     let rootTools = document.querySelector('.root-tools');
