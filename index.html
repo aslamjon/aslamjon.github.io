@@ -7,19 +7,37 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/highcharts.css">
-    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/privet_bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Portfolio</title>
 </head>
 
 <body>
+     
+  <!-- Modal -->
+  <div class="modal fade" id="openYellow" tabindex="-1" role="dialog" aria-labelledby="openYellowLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <!-- Modal Header -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <!-- <span aria-hidden="true">&times;</span> -->
+          </button>
+          <h5 class="modal-title" id="openYellowLabel">Modal title</h5>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body modal-body-bg">
+          
+        </div>
+      </div>
+    </div>
+  </div>
        
 
     <section class="template">
         <div class="row">
-            <div class="col-md-6 col-sm-6 closeTemp" data-aos="fade-right">
+            <div class="col-md-6 col-sm-6 closeTemp wow fadeInUp">
                 <div class="img">
                     <div class="ovh">
                         <div class="top-status-bar">
@@ -28,7 +46,7 @@
                             <div class="green"></div>
                         </div>
                         <img src="img/maxWay.jpg" alt="">
-                        <a href="https://aslamjon.github.io/MERN/lesson%2013/calc.html" class="" target="_blank">
+                        <a href="https://aslamjon.github.io/maxway/" class="" target="_blank">
                             MaxWay
                             <p class="btn btn-primary">View Now</p>
                         </a>
@@ -43,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-6 closeTemp" data-aos="fade-left">
+            <div class="col-md-6 col-sm-6 closeTemp wow fadeInUp">
                 <div class="img">
                     <div class="ovh">
                         <div class="top-status-bar">
@@ -51,9 +69,9 @@
                             <div class="yellow"></div>
                             <div class="green"></div>
                         </div>
-                        <img src="img/maxWay.jpg" alt="">
-                        <a href="https://aslamjon.github.io/MERN/lesson%2013/calc.html" class="" target="_blank">
-                            MaxWay
+                        <img src="img/meva.jpg" alt="">
+                        <a href="https://aslamjon.github.io/meva/" class="" target="_blank">
+                            Meva Cheva
                             <p class="btn btn-primary">View Now</p>
                         </a>
                     </div>
@@ -63,11 +81,12 @@
                             <div class="clock">11:23</div>
                             <div class="another"><img src="img/Capture.JPG" alt=""></div>
                         </div>
-                        <img class="tel-img" src="img/maxway-mobil.jpg" alt="">
+                        <img class="tel-img" src="img/meva-mobil.jpg" alt="">
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-6 closeTemp" data-aos="fade-up-right">
+
+            <div class="col-md-6 col-sm-6 closeTemp wow fadeInLeft">
                 <div class="img">
                     <div class="ovh">
                         <div class="top-status-bar">
@@ -75,9 +94,9 @@
                             <div class="yellow"></div>
                             <div class="green"></div>
                         </div>
-                        <img src="img/maxWay.jpg" alt="">
-                        <a href="https://aslamjon.github.io/MERN/lesson%2013/calc.html" class="" target="_blank">
-                            MaxWay
+                        <img src="img/codeBox2.jpg" alt="">
+                        <a href="https://aslamjon.github.io/codebox/" class="" target="_blank">
+                            CodeBox
                             <p class="btn btn-primary">View Now</p>
                         </a>
                     </div>
@@ -87,11 +106,11 @@
                             <div class="clock">11:23</div>
                             <div class="another"><img src="img/Capture.JPG" alt=""></div>
                         </div>
-                        <img class="tel-img" src="img/maxway-mobil.jpg" alt="">
+                        <img class="tel-img" src="img/codebox-mobil.jpg" alt="">
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-6 closeTemp" data-aos="fade-up-left">
+            <div class="col-md-6 col-sm-6 closeTemp wow fadeInRight">
                 <div class="img">
                     <div class="ovh">
                         <div class="top-status-bar">
@@ -99,9 +118,9 @@
                             <div class="yellow"></div>
                             <div class="green"></div>
                         </div>
-                        <img src="img/maxWay.jpg" alt="">
-                        <a href="https://aslamjon.github.io/MERN/lesson%2013/calc.html" class="" target="_blank">
-                            MaxWay
+                        <img src="img/beeline2.jpg" alt="">
+                        <a href="https://aslamjon.github.io/mobilOperator/" class="" target="_blank">
+                            Mobil Operator
                             <p class="btn btn-primary">View Now</p>
                         </a>
                     </div>
@@ -111,23 +130,86 @@
                             <div class="clock">11:23</div>
                             <div class="another"><img src="img/Capture.JPG" alt=""></div>
                         </div>
-                        <img class="tel-img" src="img/maxway-mobil.jpg" alt="">
+                        <img class="tel-img" src="img/beeline-mobil.jpg" alt="">
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-6 col-sm-6 closeTemp wow fadeInLeft" >
+                <div class="img" onmouseover="hover('calc', 'img/calcD.jpg', 'calcM', 'img/calcD-mobil.jpg')" onmouseout="hover('calc', 'img/calcL.jpg', 'calcM', 'img/calcL-mobil.jpg')">
+                    <div class="ovh">
+                        <div class="top-status-bar">
+                            <div class="red"></div>
+                            <div class="yellow"></div>
+                            <div class="green"></div>
+                        </div>
+                        <img src="img/calcL.jpg" alt="" id="calc">
+                        <a href="https://aslamjon.github.io/calculator/" class="" target="_blank">
+                            Calculator
+                            <p class="btn btn-primary">View Now</p>
+                        </a>
+                    </div>
+                    
+                    <div class="tel">
+                        <div class="navigation">
+                            <div class="clock">11:23</div>
+                            <div class="another"><img src="img/Capture.JPG" alt=""></div>
+                        </div>
+                        <img class="tel-img" src="img/calcL-mobil.jpg" id="calcM" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 closeTemp wow fadeInRight" >
+                <div class="img">
+                    <div class="ovh">
+                        <div class="top-status-bar">
+                            <div class="red"></div>
+                            <div class="yellow"></div>
+                            <div class="green"></div>
+                        </div>
+                        <img src="img/clickUp.jpg" alt="">
+                        <a href="https://aslamjon.github.io/clickUp/" class="" target="_blank">
+                            Click Up
+                            <p class="btn btn-primary">View Now</p>
+                        </a>
+                    </div>
+                    
+                    <div class="tel">
+                        <div class="navigation">
+                            <div class="clock">11:23</div>
+                            <div class="another"><img src="img/Capture.JPG" alt=""></div>
+                        </div>
+                        <img class="tel-img" src="img/clickUp-mobil.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
+    
+    <div class="taskbar">
+        <div class="start">
+            <div class="Alogo icon">
+            </div>
+        </div>
+        <div class="Notification-Area-Icons">
+            <img src="img/battery-70.png"/>
+            <div class="fullDate"></div>
+        </div>
+    </div>
+    <div class="root-tools">
+        <div class="tools">
+            
+        </div>
+    </div>
 
 
     <script src="js/jquery-3.5.1.slim.min.js"></script>
-    <script src="js/jQuery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/owl.carousel.js"></script>
-    <script src="js/highcharts.js"></script>
-    <script src="js/aos.js"></script>
+    <script src="js/wow.min.js"></script>
     <script src="js/main.js"></script>
-
 </body>
 
 </html>

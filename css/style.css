@@ -1,16 +1,70 @@
+@font-face {
+  font-family: "Roboto-Black";
+  src: url("../Roboto/Roboto-Black.ttf") format("truetype");
+}
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  font-family: "Roboto-Black", sans-serif;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-color: #fff;
+  cursor: pointer;
+  mask-position: center center;
+  mask-size: 90%;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  -webkit-mask-size: 90%;
+  -webkit-mask-repeat: no-repeat;
+}
+
+#openYellow .modal-dialog {
+  max-width: 80%;
+}
+#openYellow .modal-dialog .modal-content {
+  border-radius: 10px;
+}
+#openYellow .modal-dialog .modal-header {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10px 10px 0 0;
+  align-items: center;
+  background: #333333;
+}
+#openYellow .modal-dialog .modal-header button {
+  outline: none;
+  width: 14px;
+  height: 14px;
+  background: #FB655E;
+  border-radius: 50%;
+  margin: 5px;
+  cursor: pointer;
+  padding: 0;
+  opacity: 1;
+}
+#openYellow .modal-dialog .modal-header .modal-title {
+  color: #BBC2C8;
+}
+#openYellow .modal-dialog .modal-body {
+  padding: 0 !important;
+}
+#openYellow .modal-dialog .modal-body img {
+  width: 100%;
+  border-radius: 0 0 10px 10px;
 }
 
 .template {
-  margin: 0 15px;
+  margin: 15px;
+  margin-top: 25px;
 }
 .template .col-md-6 {
   transition: 0.3s;
   margin: 20px 0;
-  position: relative;
 }
 .template .col-md-6 .img {
   width: 100%;
@@ -41,14 +95,15 @@ body {
   width: 100%;
   height: 20px;
   background: #233744;
+  background: #333333;
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
   align-items: center;
   z-index: 1;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   padding-left: 5px;
 }
 .template .col-md-6 .img .top-status-bar .red, .template .col-md-6 .img .top-status-bar .yellow, .template .col-md-6 .img .top-status-bar .green {
@@ -71,7 +126,7 @@ body {
 }
 .template .col-md-6 .img a {
   position: absolute;
-  top: 30%;
+  top: 38%;
   left: 15%;
   right: 45%;
   opacity: 0;
@@ -80,13 +135,21 @@ body {
   z-index: 1;
   text-align: center;
   text-decoration: none;
+  outline: none;
+  border: none;
   font-size: 20px;
   font-weight: 600;
   color: #bbbbbb;
+  transform: translateY(400px);
 }
 .template .col-md-6 .img a p {
   display: block;
   margin-top: 10px;
+  background: #333333;
+  border: none;
+}
+.template .col-md-6 .img a p:hover {
+  background: #0062cc;
 }
 .template .col-md-6 .img .tel {
   width: 30%;
@@ -113,7 +176,8 @@ body {
 }
 .template .col-md-6 .img .tel .navigation .clock {
   color: #BBC2C8;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 500;
 }
 .template .col-md-6 .img .tel .navigation .another img {
   width: 65px;
@@ -130,6 +194,7 @@ body {
   border-radius: 10px;
 }
 .template .col-md-6 .img:hover a {
+  transform: translateY(0px);
   opacity: 1;
 }
 .template .col-md-6 .img:hover a:hover {
@@ -141,6 +206,78 @@ body {
   bottom: 0;
 }
 
+.taskbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #333333;
+  padding: 3px 15px;
+  z-index: 3;
+  box-shadow: 0 1px 5px black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.taskbar .start .Alogo {
+  mask-image: url("../img/apple-logo.svg");
+  -webkit-mask-image: url("../img/apple-logo.svg");
+  background: #e4e4e4;
+  transition: 0.3s;
+}
+.taskbar .start .Alogo:hover {
+  background-color: #fff;
+}
+.taskbar .Notification-Area-Icons {
+  display: flex;
+  align-items: center;
+}
+.taskbar .Notification-Area-Icons img {
+  height: 20px;
+}
+.taskbar .Notification-Area-Icons .fullDate {
+  color: #e4e4e4;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.root-tools {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 3;
+}
+.root-tools .tools {
+  min-width: 200px;
+  height: 40px;
+  background: rgba(51, 51, 51, 0.5);
+  border-radius: 10px 10px 0 0;
+  transform: translateY(50px);
+  transition: 0.4s;
+  padding: 5px;
+  display: flex;
+}
+.root-tools .tools .toolsItem {
+  height: 35px;
+  margin: 0 5px;
+  transform: translate(0px, 0px) rotate(0deg);
+  transition: 0.4s;
+  cursor: pointer;
+}
+.root-tools .tools .toolsItem img {
+  height: 100%;
+  border-radius: 7px;
+}
+.root-tools .tools .toolsItem:hover {
+  transform: translate(0px, -10px) rotate(-15deg);
+}
+.root-tools:hover .tools {
+  transform: translateY(0px);
+}
+
 @media (max-width: 800px) {
   .template .col-md-6 .img .tel .navigation {
     padding: 5px 7px;
@@ -150,6 +287,9 @@ body {
   }
   .template .col-md-6 .img .tel .navigation .another img {
     width: 50px;
+  }
+  .template .col-md-6 .img a {
+    top: 30%;
   }
 }
 @media (max-width: 630px) {
