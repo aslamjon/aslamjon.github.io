@@ -1,5 +1,5 @@
 
-new WOW().init();
+
 
 // Clock
 let clock = document.querySelectorAll('.clock');
@@ -39,7 +39,7 @@ red.forEach((value, index) => {
 // ================- change image in another -======================
 let another = document.querySelectorAll('.another');
 another.forEach((value, index) => {
-    value.innerHTML = '<img src="img/Capture2.JPG" alt="">';
+    value.innerHTML = '<img src="public/assets/img/Capture2.JPG" alt="">';
 })
 // ===================- change img hover -===================
 function hover(mainImg, mainSrc, telImg, telSrc) {

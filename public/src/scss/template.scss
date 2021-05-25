@@ -236,14 +236,14 @@
         .Alogo {
             mask-image: url('../img/apple-logo.svg');
             -webkit-mask-image: url('../img/apple-logo.svg');      
-            background: rgba(228,228,228);
+            background: rgb(228,228,228);
             transition: 0.3s;
             &:hover{
                 background-color: #fff;
             }  
         }
         .projects {
-            color: rgba(228,228,228);
+            color: rgb(228,228,228);
             cursor: pointer;
             margin: 0 10px;
             transition: 0.3s;
@@ -260,7 +260,7 @@
             height: 20px;
         }
         .fullDate{
-            color: rgba(228,228,228);
+            color: rgb(228,228,228);
             margin-left: 10px;
             font-size: 14px;
         }
