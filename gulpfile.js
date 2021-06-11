@@ -60,7 +60,7 @@
 
 ///////////////////////////////////////////////
 const gulp = require('gulp');
-const imagemin = require('gulp-imagemin');
+// const imagemin = require('gulp-imagemin');
 const concat = require('gulp-concat');
 const terser = require('gulp-terser');
 const sourcemaps = require('gulp-sourcemaps');
@@ -87,7 +87,8 @@ var paths = {
 		css: 'public/src/css/*.css',
 		js: 'public/src/js/*.js',
 		// vendors: 'public/src/vendors/**/*.*',
-		imgs: 'public/src/img/**/*.+(png|jpg|gif|svg)',
+		// imgs: 'public/src/img/**/*.+(png|jpg|gif|svg)',
+		imgs: 'public/src/img/**/*.{jpg,png}',
 		scss: 'public/src/scss/**/*.scss',
 	},
 	dist: {
@@ -95,7 +96,7 @@ var paths = {
         html: './',
 		css: 'public/assets/css',
 		js: 'public/assets/js',
-		imgs: 'public/assets/img',
+		imgs: 'public/assets/imgs',
 		// imgs: 'public/dist/imgs',
 		// vendors: 'public/dist/vendors',
 	},
@@ -105,38 +106,47 @@ function copyHtml() {
 }
 
 function imgTask() {
-    return src('img/*').pipe(imagemin()).pipe(gulp.dest('dist/imges'));
+    return src(paths.src.imgs)
+	.pipe(imagemin([
+		imagemin.mozjpeg({ quality:80, progressive: true}),
+		imagemin.optipng({ optimizationLevel: 2}),
+	]))
+	.pipe(gulp.dest(paths.dist.imgs));
 }
+
+
+
+
 // Compress (JPEG, PNG, GIF, SVG, JPG)
-gulp.task('imgs', () => {
-	return gulp
-		.src(paths.src.imgs)
-		.pipe(
-			imagemin([
-				imagemin.gifsicle({
-					interlaced: true,
-				}),
-				imagemin.mozjpeg({
-					quality: 75,
-					progressive: true,
-				}),
-				imagemin.optipng({
-					optimizationLevel: 5,
-				}),
-				imagemin.svgo({
-					plugins: [
-						{
-							removeViewBox: true,
-						},
-						{
-							cleanupIDs: false,
-						},
-					],
-				}),
-			]),
-		)
-		.pipe(gulp.dest(paths.dist.imgs));
-});
+// gulp.task('imgs', () => {
+// 	return gulp
+// 		.src(paths.src.imgs)
+// 		.pipe(
+// 			imagemin([
+// 				imagemin.gifsicle({
+// 					interlaced: true,
+// 				}),
+// 				imagemin.mozjpeg({
+// 					quality: 75,
+// 					progressive: true,
+// 				}),
+// 				imagemin.optipng({
+// 					optimizationLevel: 5,
+// 				}),
+// 				imagemin.svgo({
+// 					plugins: [
+// 						{
+// 							removeViewBox: true,
+// 						},
+// 						{
+// 							cleanupIDs: false,
+// 						},
+// 					],
+// 				}),
+// 			]),
+// 		)
+// 		.pipe(gulp.dest(paths.dist.imgs));
+// });
 // ############# Js #############
 function js() {
     return src(paths.src.js)
@@ -158,7 +168,6 @@ function css() {
         // .pipe(sourcemaps.write('.'))
         .pipe(dest(paths.dist.css));
 }
-
 // ############# for sass #############
 const compileSass = require('gulp-sass');
 compileSass.compiler = require('node-sass');
