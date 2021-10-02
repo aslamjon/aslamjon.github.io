@@ -34,6 +34,7 @@ const NavbarStyled = styled.div`
         }
     }
     .notificationArea {
+        display: flex;
         &__battery {
             transition: 0.3s;
             &:hover {
@@ -41,7 +42,8 @@ const NavbarStyled = styled.div`
             }
         }
         &__clock {
-
+            color: #e4e4e4;
+            margin-left: 8px;
         }
     }
 `;

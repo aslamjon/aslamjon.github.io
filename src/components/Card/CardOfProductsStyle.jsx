@@ -1,35 +1,37 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const CardOfProductsStyled = styled.div`
     position: relative;
     width: 100%;
-    .controlButtons {
-        display: flex;
-        align-items: center;
-        background: #333;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        width: 100%;
-        height: 20px;
-        padding-left: 5px;
+    transition: 1.3s;
+    /* animation-duration: 1s;
+    animation-fill-mode: forwards; */
+    
+    ${({x}) => x && css`
+        opacity: 0.8;
         z-index: 1;
-        div {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin: 0 0 0 5px;
-            cursor: pointer;
+        ${
+            (window.innerWidth > 767) ?
+            (window.innerWidth / 2 < x) ? 
+                `transform: translate(-50%, ${document.body.offsetHeight}px); 
+                animation: width 0.5s ease-in-out;
+                animation: display 1s ease-in-out;`
+            : `transform: translate(70%, ${document.body.offsetHeight}px); 
+                animation: width 0.5s ease-in-out;
+                animation: display 1s ease-in-out;`
+            : null
         }
-        &__close {
-            background: #fb655e;
-        }
-        &__maximize {
-            background: #fdbc3e;
-        }
-        &__minimize {
-            background: #00c653;
-        }
+    `}
+    
+    @keyframes width{
+        from {width: 100%;}
+        to {width: 20%;}
     }
+    @keyframes display{
+        0% {opacity: 0.8;}
+        100% {display: none;}
+    }
+    
     .main {
         position: relative;
         &__img {
@@ -141,8 +143,8 @@ const CardOfProductsStyled = styled.div`
                 width: 100%;
                 height: 100%;
                 background-repeat: no-repeat;
-                background-position: center;
-                background-size: cover;
+                background-position: 0 0;
+                background-size: 100% 120%;
                 background-image: url(${({mobilLightImg}) => mobilLightImg});
             }
         }

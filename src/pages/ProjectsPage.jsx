@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { ProjectsPageStyled } from './PagesStyles/ProjectsPage.style'
 import { Row, Col } from './../components/Grid';
 import CardOfProjects from '../components/Card/CardOfProjects';
@@ -22,6 +22,7 @@ import domDMobil from "../assets/ImagesOfProjects/domd-mobil.jpg";
 
 import megaFootMobil from "../assets/ImagesOfProjects/megafood-mobil.jpg";
 import euroPrint from "../assets/ImagesOfProjects/euroPrint.jpg";
+import Taskbar from '../components/Taskbar';
 
 const dataOfProjects = [
   {
@@ -89,16 +90,22 @@ const dataOfProjects = [
   },
 ];
 const taskbar = [];
-const recycleBin = []; 
+// const recycleBin = []; 
 
 const ProjectsPage = () => {
+  const [recycleBin, setRecycleBin] = useState([]);
   const closeHandling = (index) => {
-    const bin = dataOfProjects.splice(index, 1)
-    recycleBin.push({
+    // const bin = dataOfProjects.splice(index, 1)
+    const bin = dataOfProjects[index]
+    // recycleBin.push()
+    let temp = [...recycleBin]
+    temp.push({
       index,
-      data: bin[0]
+      data: bin[0] ? bin[0] : bin
     })
-    console.log(dataOfProjects)
+    setRecycleBin(temp)
+    console.log(recycleBin)
+    console.log(temp, 'temp')
   }
   const maximizeHandling = (index) => {
 
@@ -106,17 +113,23 @@ const ProjectsPage = () => {
   const minimizeHandling = (index) => {
 
   }
+  const taskbarContant = {
+    recycleBin,
+    setRecycleBin,
+    taskbar
+  }
   return (
     <ProjectsPageStyled>
       <Row row>
         {dataOfProjects.map((value, index) => <Col key={index+1} md={6} sm={12} mt={25} >
-          <CardOfProjects 
+          <CardOfProjects key={index+1}
             close={() => closeHandling(index)}
             maximize={() => maximizeHandling(index)}
             minimize={() => minimizeHandling(index)}
-            {...value} />
+            {...value}/>
         </Col>)}
       </Row>
+      <Taskbar {...taskbarContant} />
     </ProjectsPageStyled>
   )
 }

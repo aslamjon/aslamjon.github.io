@@ -5,6 +5,7 @@ import SvgIcon from './../SvgIcon';
 import appleLogo from './../../assets/images/apple-logo.svg';
 import battery from './../../assets/images/battery-full.png';
 import Urls from '../../router/Urls';
+import Clock from '../Clock';
 
 const Navbar = () => {
     return (
@@ -21,7 +22,7 @@ const Navbar = () => {
             </ul>
             <div className="notificationArea">
                 <SvgIcon src={battery} color="#e4e4e4" className="notificationArea__battery"/>
-                <div className="notificationArea__clock"></div>
+                <div className="notificationArea__clock"><Clock /></div>
             </div>
         </NavbarStyled>
     )

@@ -10,6 +10,7 @@ const Router = () => {
                 <Switch>
                     <Route exact path={Urls.home} component={HomePage}/>
                     <Route path={Urls.projects} component={ProjectsPage}/>
+                    <Route path={"*"} ><Redirect to={Urls.home} /></Route>
                 </Switch>
             </LayoutManager>
         </BrowserRouter>
