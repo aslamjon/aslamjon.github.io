@@ -7,6 +7,7 @@ const TaskbarStyled = styled.div`
     align-items: center;
     position: fixed;
     bottom: 0;
+    left: 0;
     .taskbar {
         background: rgba(51,51,51, 0.75);
         border-top-left-radius: 15px;
@@ -43,15 +44,23 @@ const TaskbarStyled = styled.div`
                 ${({recycle}) => recycle && css`
                     bottom: 500%;
                     clip-path: polygon(0% 0% , 100% 0%, 100% 100%, 0% 100%);
-                    width: 360px;
+                    width: 100%;
+                `}
+                ${({maxRecycle}) => maxRecycle && css`
+                    max-width: 100%;
+                    min-height: calc(100vh - 30px);
+                    bottom: 0;
                 `}
                 &__container {
                     padding: 15px;
                     display: flex;
                     justify-content: space-between;
                     flex-wrap: wrap;
+                    ${({maxRecycle}) => maxRecycle && css`
+                        justify-content: flex-start;
+                    `}
                     &__empty {
-                        margin: 50px auto;
+                        margin: 15% auto 0;
                         font-size: 20px;
                         font-weight: 700;
                     }

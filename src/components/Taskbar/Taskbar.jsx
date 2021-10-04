@@ -7,9 +7,21 @@ import emptyBin from '../../assets/images/RecycleBinEmpty.png'
 
 const Taskbar = ({ recycleBin, setRecycleBin, taskbar }) => {
     const [recycle, setRecycle] = useState(false);
-    console.log(recycle)
+    const [maxRecycle, setMaxRecycle] = useState(false);
+    
+    const closeHandling = () => {
+        if (!maxRecycle) setRecycle(!recycle);
+        else {
+            setMaxRecycle(!maxRecycle)
+            setRecycle(!recycle)
+        }
+    }
+    const content = {
+        recycle,
+        maxRecycle
+    }
     return (
-        <TaskbarStyled recycle={recycle} >
+        <TaskbarStyled {...content}>
             <div className="taskbar">
                 <div className="taskbar__items">
 
@@ -22,9 +34,9 @@ const Taskbar = ({ recycleBin, setRecycleBin, taskbar }) => {
             </div>
             <div className="taskbar__recycleBin__body">
                 <div className="taskbar__recycleBin__body__controlButtons controlButtons">
-                    <div className="controlButtons__close"></div>
-                    <div className="controlButtons__maximize"></div>
-                    <div className="controlButtons__minimize"></div>
+                    <div className="controlButtons__close" onClick={() => closeHandling()}></div>
+                    <div className="controlButtons__maximize" onClick={() => setMaxRecycle(!maxRecycle)}></div>
+                    <div className="controlButtons__minimize" onClick={() => closeHandling()}></div>
                 </div>
                 <div className="taskbar__recycleBin__body__container">
                     {recycleBin[0] ? null : <div className="taskbar__recycleBin__body__container__empty">Recycle bin is empty</div>}
