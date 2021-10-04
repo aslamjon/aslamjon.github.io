@@ -6,7 +6,7 @@ import wifi from '../../assets/images/ios15-wifi-icon.png';
 import signal from '../../assets/images/ios15-cellular-signal-icon.png';
 import Clock from '../Clock/Clock';
 
-const CardOfProjects = ({ name, url, desktopLightImg, desktopDarkImg, mobilLightImg, mobilDarkImg, index, close, maximize, minimize, className }) => {
+const CardOfProjects = ({ name, url, desktopLightImg, desktopDarkImg, mobilLightImg, mobilDarkImg, index, close, maximize, minimize }) => {
     const [x, setX] = useState('');
     const context = {
         battery,
@@ -18,18 +18,12 @@ const CardOfProjects = ({ name, url, desktopLightImg, desktopDarkImg, mobilLight
         mobilDarkImg,
         x: x.toString()
     }
-    
-    const minimizeHandling = (e) => {
-        console.log(e.target.parentElement)
-        
-        
-    }
     return (
         <CardOfProductsStyled {...context}>
             <div className="controlButtons">
-                <div className={`controlButtons__close ${className}`} onClick={(e) => close(e, x, setX, index)}></div>
+                <div className={`controlButtons__close cardOfProjectsIndex${index}`} onClick={(e) => close(e, x, setX, index)}></div>
                 <div className="controlButtons__maximize" onClick={maximize}></div>
-                <div className="controlButtons__minimize" onClick={minimizeHandling}></div>
+                <div className={`controlButtons__minimize cardOfTaskbar${index}`} onClick={(e) => minimize(e, x, setX, index)}></div>
             </div>
             <div className="main">
                 <div className="main__img">

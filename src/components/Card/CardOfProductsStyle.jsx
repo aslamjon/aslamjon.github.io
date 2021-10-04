@@ -172,17 +172,26 @@ const CardOfProductsStyled = styled.div`
     }
     &.maximize {
         z-index: 2;
-        width: calc(100vw - 50px);
-        height: calc(100vh - 30px);
-        margin-top: -33px;
+        width: calc(100vw - 15px);
+        height: calc(100vh - 50px);
+        /* margin-top: -33px; */
         position: absolute;
-        left: 15px;
+        left: 0px;
+        top: -9px;
         .main {
             &__img {
                 max-height: 100%;
             }
             &__mobil {
+                opacity: 0;
                 height: calc(100% + 20px);
+            }
+            &:hover {
+                .main__img__viewNow {
+                    opacity: 1;
+                    bottom: -100%;
+                    border-radius: 0%;
+                }
             }
         }
     }

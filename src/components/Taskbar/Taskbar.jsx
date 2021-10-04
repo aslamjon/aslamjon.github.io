@@ -23,9 +23,10 @@ const Taskbar = ({ recycleBin, taskbar, putBack, emptyRecycle }) => {
     return (
         <TaskbarStyled {...styleContent}>
             <div className="taskbar">
-                <div className="taskbar__items">
-                    
-                </div>
+                {taskbar.map((value, index) => <div key={index+1} className={`taskbar__item`}>
+                    <img src={value.data.desktopLightImg} alt={value.data.name} onClick={(e) => putBack(e, value.index, index)}/>
+                </div>)}
+                
                 <div className="taskbar__recycleBin">
                     <div className="taskbar__recycleBin__button" onClick={() => setRecycle(!recycle)}>
                         <img src={recycleBin.length ? bin : emptyBin} alt="bin" />
@@ -45,7 +46,7 @@ const Taskbar = ({ recycleBin, taskbar, putBack, emptyRecycle }) => {
                 <div className="taskbar__recycleBin__body__container">
                     {recycleBin[0] ? null : <div className="taskbar__recycleBin__body__container__empty">Recycle bin is empty</div>}
                     {recycleBin.map((value, index) => <div key={index+1} className="taskbar__recycleBin__body__container__item">
-                        <img src={value.data.desktopLightImg} alt={value.data.name} onClick={(e) => putBack(e, value.index, index)} />
+                        <img src={value.data.desktopLightImg} alt={value.data.name} onClick={(e) => putBack(e, value.index, index, 'recycle')} />
                         <div>{value.data.name}</div>
                     </div>)}
                 </div>

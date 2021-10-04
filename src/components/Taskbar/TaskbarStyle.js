@@ -17,8 +17,22 @@ const TaskbarStyled = styled.div`
         transform: translateY(60px);
         transition: 0.5s;
         padding: 5px;
-        &__items {
-
+        display: inline-flex;
+        &__item {
+            height: 45px;
+            padding: 5px 0px;
+            margin: 0 5px;
+            transition: 0.5s;
+            img {
+                height: 100%;
+                transition: 0.5s;
+                cursor: pointer;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+                &:hover {
+                    transform: translateY(-10px) scale(1.2);
+                }
+            }
         }
         &__recycleBin {
             &__button {
@@ -108,6 +122,11 @@ const TaskbarStyled = styled.div`
                     }
                 }
             }
+        }
+    }
+    &.active {
+        .taskbar {
+            transform: translateY(0px);
         }
     }
     &:hover {

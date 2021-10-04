@@ -94,40 +94,55 @@ const ProjectsPage = () => {
   const [taskbar, setTaskbar] = useState([]);
   const [recycleBin, setRecycleBin] = useState([]);
 
-  const close = (index) => {
-    const bin = dataOfProjects[index];
-    let temp = [...recycleBin];
-    temp.push({
-      index,
-      data: bin[0] ? bin[0] : bin
-    });
-    setRecycleBin(temp);
-  }
-  const closeHandling = (e, X, setX, index) => {
+  const cardToTaskbarAnimation = (e, X, setX, index) => {
     let element = e.target.parentElement.parentElement;
     let col = e.target.parentElement.parentElement.parentElement;
     let { x: xValue } = element.getBoundingClientRect();
     if (!X) {
       setX(xValue);
       setTimeout(() => col.style.display = 'none', 1000);
-      close(index)
     } else {
       col.style.display = 'block';
       setTimeout(() => setX(''), 200);
     }
   }
+  const copyCardToOtherState = (index, type="recycle") => {
+    const value = dataOfProjects[index];
+    let temp = [];
+    if (type === "recycle") temp = [...recycleBin];
+    else temp = [...taskbar];
+    temp.push({
+      index,
+      data: value[0] ? value[0] : value
+    });
+    if (type === "recycle") setRecycleBin(temp);
+    else setTaskbar(temp);
+  }
+  const closeHandling = (e, X, setX, index) => {
+    cardToTaskbarAnimation(e, X, setX, index);
+    if (!X) copyCardToOtherState(index);
+  }
   // putBack for Taskbar
-  const putBack = (e, index, recycleIndex) => {
+  const putBack = (e, index, loopIndex, type) => {
+    let cardOfTaskbar = document.querySelector(`.cardOfTaskbar${index}`);
     let cardOfProjectsIndex = document.querySelector('.cardOfProjectsIndex' + index);
-    cardOfProjectsIndex.click();
+    if (type === 'recycle') cardOfProjectsIndex.click();
+    else cardOfTaskbar.click();
+    
     let perent = e.target.parentElement;
     setTimeout(() => perent.classList.add('active'), 200);
-    setTimeout(() => {
-      let temp = recycleBin.filter((elem, elemIndex) => elemIndex != recycleIndex);
+    // For Recycle Bin (Trash)
+    if (type === 'recycle') setTimeout(() => {
+      let temp = recycleBin.filter((elem, elemIndex) => elemIndex !== loopIndex);
       setRecycleBin(temp);
       perent.classList.remove('active');
     }, 250);
-    console.log(index, recycleIndex)
+    // for Taksbar
+    else setTimeout(() => {
+      let temp = taskbar.filter((elem, elemIndex) => elemIndex !== loopIndex);
+      setTaskbar(temp);
+      perent.classList.remove('active');
+    }, 250);
   }
   // Empty button for Taskbar
   const emptyRecycle = () => {
@@ -139,8 +154,12 @@ const ProjectsPage = () => {
     elem.classList.toggle("maximize")
     elem.parentElement.style.position = 'unset';
   }
-  const minimizeHandling = (index) => {
-
+  const minimizeHandling = (e, X, setX, index) => {
+    cardToTaskbarAnimation(e, X, setX, index);
+    let elem = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.lastElementChild;
+    elem.classList.toggle('active');
+    setTimeout(() => !X && copyCardToOtherState(index, "minimize"), 300);
+    setTimeout(() => elem.classList.toggle('active'),1000);
   }
   const taskbarContaxt = {
     recycleBin,
@@ -153,10 +172,9 @@ const ProjectsPage = () => {
       <Row row>
         {dataOfProjects.map((value, index) => <Col key={index + 1} md={6} sm={12} mt={25} >
           <CardOfProjects key={index + 1}
-            className={`cardOfProjectsIndex${index}`}
             close={closeHandling}
             maximize={maximizeHandling}
-            minimize={() => minimizeHandling(index)}
+            minimize={minimizeHandling}
             {...value} index={index} />
         </Col>)}
       </Row>
