@@ -96,12 +96,35 @@ const TaskbarStyled = styled.div`
                     }
                     &__item {
                         width: 100px;
-                        margin: 5px;
+                        margin: 15px 5px 5px;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
+                        position: relative;
                         &.active {
                             transition: 0.3s;
+                            opacity: 0;
+                        }
+                        &::after {
+                            content: 'Restore it';
+                            width: 100%;
+                            background: rgba(0,0,0,0.7);
+                            position: absolute;
+                            top: -24px;
+                            text-align: center;
+                            color: #fff;
+                            border-radius: 5px;
+                            padding: 2px 0;
+                            opacity: 0;
+                        }
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            top: -2px;
+                            border-top: 5px solid rgba(0,0,0,0.7);
+                            border-left: 5px solid transparent;
+                            border-right: 5px solid transparent;
+                            border-bottom: 5px solid transparent;
                             opacity: 0;
                         }
                         img {
@@ -113,6 +136,11 @@ const TaskbarStyled = styled.div`
                             cursor: pointer;
                             &:hover {
                                 border: 1px solid rgba(0,0,0,0.4);
+                                .taskbar__recycleBin__body__container__item {
+                                    &::after {
+                                        opacity: 1;
+                                    }
+                                }
                             }
                         }
                         div {
