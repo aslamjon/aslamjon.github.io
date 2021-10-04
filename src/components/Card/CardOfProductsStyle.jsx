@@ -4,12 +4,16 @@ const CardOfProductsStyled = styled.div`
     position: relative;
     width: 100%;
     transition: 1.3s;
-    /* animation-duration: 1s;
-    animation-fill-mode: forwards; */
-    
-    ${({x}) => x && css`
-        opacity: 0.8;
+    transform: translate(0%, 0px);
+    ${({x}) => !x && css`
         z-index: 1;
+    `}
+    ${({x}) => x && css`
+        z-index: 2;
+    `}
+    ${({x}) => x && css`
+        z-index: 2;
+        opacity: 0.8;
         ${
             (window.innerWidth > 767) ?
             (window.innerWidth / 2 < x) ? 
@@ -166,7 +170,22 @@ const CardOfProductsStyled = styled.div`
             }
         }
     }
-    
+    &.maximize {
+        z-index: 2;
+        width: calc(100vw - 50px);
+        height: calc(100vh - 30px);
+        margin-top: -33px;
+        position: absolute;
+        left: 15px;
+        .main {
+            &__img {
+                max-height: 100%;
+            }
+            &__mobil {
+                height: calc(100% + 20px);
+            }
+        }
+    }
 `;
 export {
     CardOfProductsStyled

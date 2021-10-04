@@ -6,7 +6,7 @@ import wifi from '../../assets/images/ios15-wifi-icon.png';
 import signal from '../../assets/images/ios15-cellular-signal-icon.png';
 import Clock from '../Clock/Clock';
 
-const CardOfProjects = ({ name, url, desktopLightImg, desktopDarkImg, mobilLightImg, mobilDarkImg, close, maximize, minimize }) => {
+const CardOfProjects = ({ name, url, desktopLightImg, desktopDarkImg, mobilLightImg, mobilDarkImg, index, close, maximize, minimize, className }) => {
     const [x, setX] = useState('');
     const context = {
         battery,
@@ -18,25 +18,16 @@ const CardOfProjects = ({ name, url, desktopLightImg, desktopDarkImg, mobilLight
         mobilDarkImg,
         x: x.toString()
     }
-    const closeHandling = (e) => {
-        let element = e.target.parentElement.parentElement;
-        let col = e.target.parentElement.parentElement.parentElement;
-        let {x} = element.getBoundingClientRect();
-        // console.log(element)
-        setX(x);
-        setTimeout(() => col.style.display = 'none', 1000);
-        
-        close()
-    }
+    
     const minimizeHandling = (e) => {
         console.log(e.target.parentElement)
         
         
     }
     return (
-        <CardOfProductsStyled {...context} >
+        <CardOfProductsStyled {...context}>
             <div className="controlButtons">
-                <div className="controlButtons__close" onClick={closeHandling}></div>
+                <div className={`controlButtons__close ${className}`} onClick={(e) => close(e, x, setX, index)}></div>
                 <div className="controlButtons__maximize" onClick={maximize}></div>
                 <div className="controlButtons__minimize" onClick={minimizeHandling}></div>
             </div>

@@ -5,7 +5,7 @@ import bin from '../../assets/images/RecycleBinFull.png'
 import emptyBin from '../../assets/images/RecycleBinEmpty.png'
 
 
-const Taskbar = ({ recycleBin, setRecycleBin, taskbar }) => {
+const Taskbar = ({ recycleBin, taskbar, putBack, emptyRecycle }) => {
     const [recycle, setRecycle] = useState(false);
     const [maxRecycle, setMaxRecycle] = useState(false);
     
@@ -16,19 +16,19 @@ const Taskbar = ({ recycleBin, setRecycleBin, taskbar }) => {
             setRecycle(!recycle)
         }
     }
-    const content = {
+    const styleContent = {
         recycle,
         maxRecycle
     }
     return (
-        <TaskbarStyled {...content}>
+        <TaskbarStyled {...styleContent}>
             <div className="taskbar">
                 <div className="taskbar__items">
-
+                    
                 </div>
                 <div className="taskbar__recycleBin">
                     <div className="taskbar__recycleBin__button" onClick={() => setRecycle(!recycle)}>
-                        <img src={recycleBin[0] ? bin : emptyBin} alt="bin" />
+                        <img src={recycleBin.length ? bin : emptyBin} alt="bin" />
                     </div>
                 </div>
             </div>
@@ -38,10 +38,15 @@ const Taskbar = ({ recycleBin, setRecycleBin, taskbar }) => {
                     <div className="controlButtons__maximize" onClick={() => setMaxRecycle(!maxRecycle)}></div>
                     <div className="controlButtons__minimize" onClick={() => closeHandling()}></div>
                 </div>
+                <div className="taskbar__recycleBin__body__emptyTrash">
+                    Trash
+                    <div className="" onClick={emptyRecycle} >Empty</div>
+                </div>
                 <div className="taskbar__recycleBin__body__container">
                     {recycleBin[0] ? null : <div className="taskbar__recycleBin__body__container__empty">Recycle bin is empty</div>}
-                    {recycleBin.map((value) => <div className="taskbar__recycleBin__body__container__item">
-                        <img src={value.data.desktopLightImg} alt={value.data.name} />
+                    {recycleBin.map((value, index) => <div key={index+1} className="taskbar__recycleBin__body__container__item">
+                        <img src={value.data.desktopLightImg} alt={value.data.name} onClick={(e) => putBack(e, value.index, index)} />
+                        <div>{value.data.name}</div>
                     </div>)}
                 </div>
             </div>
