@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.js": "/static/js/main.cc3cca55.chunk.js",
+    "main.js.map": "/static/js/main.cc3cca55.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.95ba3f61.js",
+    "runtime-main.js.map": "/static/js/runtime-main.95ba3f61.js.map",
+    "static/js/2.99050070.chunk.js": "/static/js/2.99050070.chunk.js",
+    "static/js/2.99050070.chunk.js.map": "/static/js/2.99050070.chunk.js.map",
+    "index.html": "/index.html",
+    "static/js/2.99050070.chunk.js.LICENSE.txt": "/static/js/2.99050070.chunk.js.LICENSE.txt",
+    "static/media/RecycleBinEmpty.5ce84797.png": "/static/media/RecycleBinEmpty.5ce84797.png",
+    "static/media/RecycleBinFull.10e82962.png": "/static/media/RecycleBinFull.10e82962.png",
+    "static/media/apple-logo.3116b640.svg": "/static/media/apple-logo.3116b640.svg",
+    "static/media/beeline-mobil.3a591648.jpg": "/static/media/beeline-mobil.3a591648.jpg",
+    "static/media/beeline2.5599a862.jpg": "/static/media/beeline2.5599a862.jpg",
+    "static/media/calcD-mobil.c2cd87f6.jpg": "/static/media/calcD-mobil.c2cd87f6.jpg",
+    "static/media/calcD.24ba0f12.jpg": "/static/media/calcD.24ba0f12.jpg",
+    "static/media/calcL-mobil.d698b063.jpg": "/static/media/calcL-mobil.d698b063.jpg",
+    "static/media/calcL.e6f0ace6.jpg": "/static/media/calcL.e6f0ace6.jpg",
+    "static/media/clickUp-mobil.30d2944b.jpg": "/static/media/clickUp-mobil.30d2944b.jpg",
+    "static/media/clickUp.de0e7542.jpg": "/static/media/clickUp.de0e7542.jpg",
+    "static/media/codeBox2.79fec8a9.jpg": "/static/media/codeBox2.79fec8a9.jpg",
+    "static/media/codebox-mobil.65245474.jpg": "/static/media/codebox-mobil.65245474.jpg",
+    "static/media/domd-mobil.ae8a50bf.jpg": "/static/media/domd-mobil.ae8a50bf.jpg",
+    "static/media/domd.5aec5d69.JPG": "/static/media/domd.5aec5d69.JPG",
+    "static/media/euroPrint.d0397ed0.jpg": "/static/media/euroPrint.d0397ed0.jpg",
+    "static/media/maxWay.aae317c9.jpg": "/static/media/maxWay.aae317c9.jpg",
+    "static/media/maxway-mobil.19e6ae55.jpg": "/static/media/maxway-mobil.19e6ae55.jpg",
+    "static/media/megafood-mobil.305fa3f5.jpg": "/static/media/megafood-mobil.305fa3f5.jpg",
+    "static/media/meva-mobil.a3b12a83.jpg": "/static/media/meva-mobil.a3b12a83.jpg",
+    "static/media/meva.6b22b643.jpg": "/static/media/meva.6b22b643.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.95ba3f61.js",
+    "static/js/2.99050070.chunk.js",
+    "static/js/main.cc3cca55.chunk.js"
+  ]
+}
